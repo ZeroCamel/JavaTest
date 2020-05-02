@@ -28,5 +28,15 @@ public class BaseType {
         // sbyte b = 50;
         // sbyte c = Convert.ToSByte(a+b);
         // Console.WriteLine(c);
+
+        int x = 100;
+        int y = 120;
+        Integer wx = x;
+        Integer wy = y;
+        System.out.println(x==y);
+        // 比较引用对象的实质内容是否相同
+        System.out.println(wx.equals(wy));
+
+        String[] strs= new String[5];
     }
 }
