@@ -2,12 +2,20 @@ import ClientQueueManage.Client;
 import ClientQueueManage.ClientEvent;
 import ClientQueueManage.ClientListener;
 import ClientQueueManage.ClientQueue;
+import CollectionAndMap.Account;
+import CollectionAndMap.StringComparator;
+import CollectionAndMap.Student;
 import InheritAndPoly.BaseRole;
 import InheritAndPoly.Magician;
 import InheritAndPoly.SwordsMan;
 import OceanHappyGame.*;
 import demo.*;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.*;
+
+import static java.lang.System.in;
 import static java.lang.System.out;
 
 /**
@@ -114,8 +122,94 @@ public class Main {
 
             }
         };
-
         baseAnoymousClass.doService();
+
+
+        //region 异常堆栈
+        // 可以使用fillInStackTrace() 装填堆栈
+        // 将起点设为重抛异常的地方
+        out.println("异常堆栈");
+        try{
+            c();
+        } catch(NullPointerException ex)
+        {
+            ex.printStackTrace();
+        }
+        // ClassCastException
+        Object[] objs={"Java","7"};
+        // Integer number = (Integer) objs[1];
+        Integer number =Integer.parseInt((String)objs[1]);
+        // Integer number1 =Integer.parseInt(args[0]);
+        out.println(number);
+        //endregion
+
+
+        out.println("Hash Set");
+        Set words = new HashSet();
+        words.add(new Student("Justin","B835031"));
+        words.add(new Student("Monica","B835032"));
+        words.add(new Student("Justin","B835031"));
+        out.println(words);
+        forEach(words);
+
+        // 排序收集的对象
+        List accounts = Arrays.asList(
+                new Account("Justin","X1234",1000),
+                new Account("Monica","X5678",500),
+                new Account("Irene","X2468",200)
+        );
+
+        Collections.sort(accounts);
+        forEach(accounts);
+
+        // Comparator
+        List wordsList = Arrays.asList("B","X","A","M","F","W","O");
+        // 内比较器
+        Collections.sort(wordsList);
+        forEach(wordsList);
+        // 外比较器
+        Collections.sort(wordsList,new StringComparator());
+        forEach(wordsList);
+
+        out.println("Hash Map");
+        Map<String,String> messages = new HashMap<>();
+        messages.put("Justin","Hello,Justin的消息");
+        messages.put("Monica","给Monica的悄悄话!");
+        messages.put("Irene","Irene的可爱喵喵叫");
+
+        // 显示键
+        forEach(messages.keySet());
+        // 显示值
+        forEach(messages.values());
+
+        Scanner scanner = new Scanner(in);
+        out.println("取得谁的信息:");
+        String message = messages.get(scanner.nextLine());
+        out.println(message);
+        out.println(messages);
+
+        out.println("Tree Map");
+        Map<String,String> messagess = new TreeMap<>();
+        Map<String,String> messagess1 = new TreeMap<>(new StringComparator());
+        messagess.put("Justin","Hello,Justin的消息");
+        messagess.put("Monica","给Monica的悄悄话!");
+        messagess.put("Irene","Irene的可爱喵喵叫");
+
+        // 继承自HashTable HashTable继承了Map接口
+        Properties props = new Properties();
+        props.setProperty("username","justin");
+        props.setProperty("password","123456");
+        out.println(props.getProperty("username"));
+        out.println(props.getProperty("password"));
+
+        try {
+            props.load(new FileInputStream(args[0]));
+            out.println(props.getProperty("cc.openhome.username"));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
@@ -149,10 +243,11 @@ public class Main {
         role.fight();
     }
 
+
+    //region 接口多态
+
     /**
-    * @Description: ${
-     * 接口多态
-     * }$
+    * @Description: ${游泳}$
     * @Param: [swimmer]
     * @return: void
     * @Author: Mr.ZeroCamel
@@ -162,4 +257,48 @@ public class Main {
     {
         swimmer.swim();
     }
+
+    /**
+     * @Description: ${Collection 遍历}$
+     * @Param: [iterable OR Collection]
+     * @return: void
+     * @Author: Mr.ZeroCamel
+     * @Date: 2020/5/4
+     */
+    private static void forEach(Iterable iterable)
+    {
+        for (Object o:iterable)
+        {
+            out.println(o);
+        }
+    }
+
+    private static void forEach2(Iterable<Map.Entry<String,String>> iterable)
+    {
+        // 增强式For循环
+        for (Map.Entry<String,String> entry: iterable)
+        {
+            out.printf("(键 %s,值 %s)%n",entry.getKey(),entry.getValue());
+        }
+    }
+    //endregion
+
+    //region 异常堆栈
+    public static String a()
+    {
+        String text = null;
+        return text.toLowerCase();
+    }
+
+    public static void b()
+    {
+        a();
+    }
+
+    public static void c()
+    {
+        b();
+    }
+    //endregion
+
 }
