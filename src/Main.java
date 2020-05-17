@@ -9,10 +9,13 @@ import InheritAndPoly.BaseRole;
 import InheritAndPoly.Magician;
 import InheritAndPoly.SwordsMan;
 import OceanHappyGame.*;
+import Stream.CharUtil;
+import Stream.IO;
 import demo.*;
 
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.*;
 
 import static java.lang.System.in;
@@ -209,6 +212,40 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        // 输入和输出
+        // 字节数据
+        try {
+            URL url = new URL(args[1]);
+            InputStream src = url.openStream();
+            OutputStream dest = new FileOutputStream(args[2]);
+
+            //IO.dump(src, dest);
+            IO.dumpBuffer(src, dest);
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // 字符数据
+        FileReader reader = null;
+        try {
+            reader = new FileReader(args[0]);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        StringWriter writer = new StringWriter();
+        try {
+            CharUtil.dump(reader, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        out.println(writer.toString());
+
 
     }
 
