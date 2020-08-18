@@ -1,6 +1,10 @@
 package Stream;
 
+
 import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Date;
 
 /**
  * @program: JavaTest
@@ -16,7 +20,7 @@ public class IO {
 
     private static final String PRE_PATH="src/Stream/file";
 
-    // region File数据源操作 JAVA->OS
+    // region 节点流：文件输入输出节点流
 
     public static void dump(InputStream src, OutputStream dest) throws IOException {
         try(InputStream input = src;OutputStream output = dest) {
@@ -26,18 +30,6 @@ public class IO {
             {
                 output.write(data, 0, length);
             }
-        }
-    }
-
-    public static void dumpBuffer(InputStream src, OutputStream dest) throws IOException {
-        try (InputStream input = new BufferedInputStream(src);
-             OutputStream output = new BufferedOutputStream(dest)){
-            byte[] data = new byte[1024];
-            int length =-1;
-            while ((length = input.read(data)) !=-1) {
-                output.write(data, 0, length);
-            }
-
         }
     }
 
@@ -259,8 +251,7 @@ public class IO {
 
     // endregion
 
-
-    // region 字节数组流
+    // region 节点流：字节数组流
 
     /**
      * ByteArrayInputStream
@@ -422,4 +413,390 @@ public class IO {
     }
 
     // endregion
+
+    // region 处理流
+
+    /**
+     * 缓冲流-直接嵌套缓冲 默认是8K
+     * @param src
+     * @param dest
+     * @throws IOException
+     */
+    public static void dumpBuffer(InputStream src, OutputStream dest) throws IOException {
+        try (InputStream input = new BufferedInputStream(src);
+             OutputStream output = new BufferedOutputStream(dest)){
+            byte[] data = new byte[1024*10];
+            int length =-1;
+            while ((length = input.read(data)) !=-1) {
+                output.write(data, 0, length);
+            }
+
+        }
+    }
+
+    /**
+     * 字符缓冲流BufferdReader
+     */
+    public static void dumpBuffer02()
+    {
+        File file = new File(PRE_PATH + "/1.txt");
+        File file1 = new File(PRE_PATH+"/3.txt");
+        try (FileReader fileReader = new FileReader(file);FileWriter fileWriter =new FileWriter(file1)) {
+            char[] flush = new char[1024];
+            int len =-1;
+            while ((len=fileReader.read(flush))!=-1)
+            {
+                fileWriter.write(flush,0,len);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * BufferedReader
+     * 逐行读取字符流
+     */
+    public static void dumpBuffer03()
+    {
+        File file = new File(PRE_PATH + "/input.png");
+        File file1 = new File(PRE_PATH+"/input-test.png");
+        try (BufferedReader fileReader = new BufferedReader(new FileReader(file));
+             BufferedWriter fileWriter = new BufferedWriter(new FileWriter(file1))) {
+            String line =null;
+            while ((line=fileReader.readLine())!=null)
+            {
+                fileWriter.write(line);
+            }
+            fileWriter.newLine();
+            fileWriter.write("hhhhh");
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 缓冲流-InputStreamReader-OutputStreamWriter
+     * System.in System.out
+     */
+    public static void inputStreamReader()
+    {
+        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out))
+        ) {
+            String msg = "";
+            while (!msg.equals("exit"))
+            {
+               msg = bufferedReader.readLine();
+               bufferedWriter.write(msg);
+               bufferedWriter.newLine();
+
+               // 强制刷新
+               bufferedWriter.flush();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * 转换流-InputStreamReader-OutputStreamWriter
+     * 网络流-转换流-缓冲流
+     * 字符编码
+     * 1、字节数不足
+     * 2、字符编码不统一
+     */
+    public static void inputStreamReader02()
+    {
+        String url = PRE_PATH+"/baidu.html";
+        try (BufferedReader inputStream =
+                     new BufferedReader(
+                             new InputStreamReader(
+                                     new URL("https://www.baidu.com").openStream(),"utf-8"));
+            BufferedWriter bufferedWriter =
+                    new BufferedWriter(
+                            new OutputStreamWriter(
+                                    new FileOutputStream(url),"utf-8")))
+        {
+            int temp = -1;
+            while ((temp=inputStream.read())!=-1)
+            {
+                System.out.print((char)temp);
+                bufferedWriter.write((char)temp);
+            }
+            bufferedWriter.flush();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 特殊流 DataInputStreamReader DataOutputStreamWriter
+     * 既保留了数据又保留了数据类型
+     *
+     */
+    public static void dataInputStream()
+    {
+        // 选择数据流
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        DataOutputStream dataOutputStream = new DataOutputStream(
+                new BufferedOutputStream(byteArrayOutputStream));
+        try {
+            // 操作数据类型 写入
+            dataOutputStream.writeUTF("如果我是我");
+            dataOutputStream.writeInt(11);
+            dataOutputStream.writeBoolean(true);
+            dataOutputStream.writeChar('a');
+
+            dataOutputStream.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // 获取数据流
+        byte[] bytes = byteArrayOutputStream.toByteArray();
+
+        // 读取
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
+        DataInputStream dataInputStream = new DataInputStream(
+                new BufferedInputStream(byteArrayInputStream));
+        try {
+            String readUTF = dataInputStream.readUTF();
+            int readInt = dataInputStream.readInt();
+            System.out.println(readUTF);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 对象流-序列化、反序列 ObjectOutputStream ObjectInputStream
+     * Only objects that support the java.io.Serializable interface can be written to streams
+     */
+    public static void objectInStream()
+    {
+        ByteArrayInputStream byteArrayInputStream = null;
+        // 选择数据流 序列化
+        try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+             ObjectOutputStream dataInputStream = new ObjectOutputStream(byteArrayOutputStream)) {
+
+            // 操作数据类型 写入
+            dataInputStream.writeUTF("如果我是我");
+            dataInputStream.writeInt(11);
+            dataInputStream.writeBoolean(true);
+            dataInputStream.writeChar('a');
+
+            dataInputStream.writeObject(new Date());
+            dataInputStream.writeObject("你是不是傻");
+            dataInputStream.writeObject(new Employee("我",100.00));
+
+            dataInputStream.flush();
+
+            byte[] bytes = byteArrayOutputStream.toByteArray();
+
+            byteArrayInputStream = new ByteArrayInputStream(bytes);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // 读取 反序列
+        try {ObjectInputStream dataInputStream1 = new ObjectInputStream(byteArrayInputStream);
+
+            readObjectData(dataInputStream1);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 序列化反序列化至文件
+     */
+    public static void objectInStream01()
+    {
+        // 获取数据源 选择数据流 序列化
+        try (ObjectOutputStream dataOutputStream = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(PRE_PATH + "/object.txt")))) {
+
+            // 操作数据 写入
+            dataOutputStream.writeUTF("如果我是我ceshi");
+            dataOutputStream.writeInt(121);
+            dataOutputStream.writeBoolean(false);
+            dataOutputStream.writeChar('b');
+
+            dataOutputStream.writeObject(new Date());
+            dataOutputStream.writeObject("测试输出到文件");
+            dataOutputStream.writeObject(new Employee("你",1100.00));
+
+            dataOutputStream.flush();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // 反序列化
+        try (ObjectInputStream objectInputStream = new ObjectInputStream(new BufferedInputStream(new FileInputStream(PRE_PATH + "/object.txt")))) {
+
+            readObjectData(objectInputStream);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private static void readObjectData(ObjectInputStream objectInputStream) throws IOException, ClassNotFoundException {
+        String readUTF = objectInputStream.readUTF();
+        Object readInt = objectInputStream.readInt();
+        System.out.println(readUTF);
+        boolean b = objectInputStream.readBoolean();
+        char readChar = objectInputStream.readChar();
+        Object o = objectInputStream.readObject();
+        Object o1 = objectInputStream.readObject();
+        Object o3 = objectInputStream.readObject();
+
+        if (o instanceof String)
+        {
+            String o2 = (String) o;
+            System.out.println(o2);
+        }
+
+        if (o3 instanceof Employee)
+        {
+            Employee o2 = (Employee) o3;
+            System.out.println(o2);
+        }
+    }
+
+
+    /**
+     * 打印流
+     */
+    public static void printDemo()
+    {
+        PrintStream in = System.out;
+        in.println("打印流");
+        in.println(true);
+
+        try (PrintStream printStream = new PrintStream(new BufferedOutputStream(new FileOutputStream(PRE_PATH + "/print.txt")))) {
+            printStream.println("打印流");
+            printStream.println(true);
+
+            // 重定向输出端
+            System.setOut(printStream);
+            System.out.println("重定向输出端");
+
+            System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream(FileDescriptor.out)),true));
+            System.out.println("重定向为控制台");
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * PrintWriter
+     */
+    public static void printDemo01()
+    {
+        try (PrintWriter printWriter = new PrintWriter(new BufferedOutputStream(new FileOutputStream("printWriter.txt")))) {
+            printWriter.println("对滴对滴");
+            printWriter.println(true);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * RandomAccessFile 随机读取和写入流
+     */
+    public static void randomAccessFile()
+    {
+        try (RandomAccessFile randomAccessFile = new RandomAccessFile(new File(PRE_PATH + "/bak.txt"),"r")) {
+            // 起始位置
+            int startPoint = 0;
+            // 实际大小
+            int actualSize = 4;
+
+            // 随机读取
+            randomAccessFile.seek(startPoint);
+
+            byte[] bytes = new byte[5];
+            int len = -1;
+            while ((len=randomAccessFile.read(bytes))!=-1)
+            {
+                if (actualSize>len)
+                {
+                    System.out.println(new String(bytes,0,len));
+                    actualSize-=len;
+
+                }
+                else
+                {
+                    System.out.println(new String(bytes,0,len));
+                    break;
+                }
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void splitFile()
+    {
+        File file = new File(PRE_PATH + "/bak.txt");
+        int blockSize = 4;
+        long len = file.length();
+        int size =(int)Math.ceil(len*1.0/blockSize);
+        System.out.println(size);
+    }
+
+
+    // endregion
+
+}
+
+class Employee implements Serializable{
+    private String name;
+    /**
+     * 透明-不需要序列化
+     */
+    private transient double salary;
+
+    public Employee(String name, double salary) {
+        this.name = name;
+        this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return "Emloyee{" +
+                "name='" + name + '\'' +
+                ", salary=" + salary +
+                '}';
+    }
 }

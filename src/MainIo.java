@@ -45,7 +45,7 @@ public class MainIo {
     */
     public static void main(String[] args) {
 
-        IO.imgConverAndOutput();
+        IO.splitFile();
 
     }
 }

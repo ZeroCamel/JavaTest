@@ -157,7 +157,7 @@ public class FileDemo {
      */
     public static void test06(File src,int deep)
     {
-        for (int i=0;i<deep;i++)
+        for (int i=-1;i<deep;i++)
         {
             System.out.print("-");
         }
