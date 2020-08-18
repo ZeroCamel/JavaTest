@@ -1,31 +1,4 @@
-import Algorithm.FindArray;
-import Algorithm.Reverse;
-import ClientQueueManage.Client;
-import ClientQueueManage.ClientEvent;
-import ClientQueueManage.ClientListener;
-import ClientQueueManage.ClientQueue;
-import CollectionAndMap.Account;
-import CollectionAndMap.StringComparator;
-import CollectionAndMap.Student;
-import InheritAndPoly.BaseRole;
-import InheritAndPoly.Magician;
-import InheritAndPoly.SwordsMan;
-import OceanHappyGame.*;
-import Stream.CharUtil;
-import Stream.ContentEncode;
-import Stream.FileDemo;
-import Stream.IO;
-import ThreadAndParallel.Hare;
-import ThreadAndParallel.Tortoise;
-import demo.*;
-
-import java.io.*;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.*;
-
-import static java.lang.System.in;
-import static java.lang.System.out;
+import Stream.CIO;
 
 /**
  * @program: JavaTest
@@ -45,7 +18,7 @@ public class MainIo {
     */
     public static void main(String[] args) {
 
-        IO.splitFile();
+        CIO.CIO_TEST01();
 
     }
 }

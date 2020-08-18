@@ -730,31 +730,32 @@ public class IO {
 
     /**
      * RandomAccessFile 随机读取和写入流
+     * 起始位置
+     * 实际大小
      */
-    public static void randomAccessFile()
+    public static void randomAccessFile(File file,int startPoint,int actualSize,int i)
     {
-        try (RandomAccessFile randomAccessFile = new RandomAccessFile(new File(PRE_PATH + "/bak.txt"),"r")) {
-            // 起始位置
-            int startPoint = 0;
-            // 实际大小
-            int actualSize = 4;
+        try (RandomAccessFile randomAccessFile = new RandomAccessFile(file,"r");
+             RandomAccessFile randomAccessFile1= new RandomAccessFile(new File(PRE_PATH+"/"+i+"split.txt"),"rw")) {
 
             // 随机读取
             randomAccessFile.seek(startPoint);
 
-            byte[] bytes = new byte[5];
+            byte[] bytes = new byte[1024];
             int len = -1;
             while ((len=randomAccessFile.read(bytes))!=-1)
             {
                 if (actualSize>len)
                 {
                     System.out.println(new String(bytes,0,len));
+                    randomAccessFile1.write(bytes,0,len);
                     actualSize-=len;
 
                 }
                 else
                 {
-                    System.out.println(new String(bytes,0,len));
+                    System.out.println(new String(bytes,0,actualSize));
+                    randomAccessFile1.write(bytes,0,actualSize);
                     break;
                 }
             }
@@ -768,11 +769,56 @@ public class IO {
 
     public static void splitFile()
     {
-        File file = new File(PRE_PATH + "/bak.txt");
-        int blockSize = 4;
+        File file = new File(PRE_PATH + "/Member.java");
+        int blockSize = 1024;
         long len = file.length();
         int size =(int)Math.ceil(len*1.0/blockSize);
         System.out.println(size);
+
+        int startPoint=0;
+        int actualSize;
+        for (int i=0;i<size;i++)
+        {
+            startPoint = i*blockSize;
+            if (i==size-1)
+            {
+                actualSize = (int) len;
+            }
+            else
+            {
+                actualSize = blockSize;
+                len-=actualSize;
+            }
+            System.out.println("快："+i+",开始位置："+startPoint+",快大小："+actualSize);
+
+            randomAccessFile(file,startPoint,actualSize,i);
+        }
+    }
+
+    /**
+     * 序列流-合并文件
+     * 输入流遍历读取
+     */
+    public void merge()
+    {
+        try {
+        // 追加文件
+        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream("",true));
+        //for 循环读取
+        BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(""));
+
+        byte[] bytes= new byte[1024];
+        int len = -1;
+        while ((len=bufferedInputStream.read(bytes))!=-1)
+        {
+            bufferedOutputStream.write(bytes,0,len);
+        }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
