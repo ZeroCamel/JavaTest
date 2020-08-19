@@ -1,5 +1,7 @@
 package ThreadAndParallel;
 
+import java.util.Random;
+
 import static java.lang.System.out;
 
 /**
@@ -24,7 +26,7 @@ public class Hare implements Runnable {
             while(step<totalStep)
             {
                 Thread.sleep(1000);
-                boolean ifHareSleep = flags[(int)(Math.random()*10)%2];
+                boolean ifHareSleep = flags[(int)(new Random().nextInt())%2];
                 if(ifHareSleep)
                 {
                     out.println("兔子睡着了...");

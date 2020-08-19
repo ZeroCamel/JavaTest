@@ -8,7 +8,7 @@ import Stream.CIO;
  * @author: Mr.ZeroCamel
  * @create: 2020-04-18 19:37
  **/
-public class MainIo {
+public class Main_IO {
     /**
     * @Description: 
     * @Param: [args]
@@ -18,7 +18,7 @@ public class MainIo {
     */
     public static void main(String[] args) {
 
-        CIO.CIO_TEST01();
+        CIO.copyFileByFileUtils();
 
     }
 }
