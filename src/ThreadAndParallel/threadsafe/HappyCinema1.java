@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * @program: JavaTest
- * @description: 快乐影院
+ * @description: 快乐影院-使用容器-选择位置
  * @author: zeroCamel
  * @create: 2020-08-20 16:37
  **/
