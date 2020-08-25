@@ -11,9 +11,9 @@ import java.lang.annotation.Target;
  * @author: Mr.ZeroCamel
  * @create: 2020-08-24 22:40
  **/
-@Target(value = {ElementType.METHOD,ElementType.TYPE})
+@Target(value = {ElementType.TYPE})
 @Retention(value = RetentionPolicy.RUNTIME)
-public @interface MyAnnotation01 {
+public @interface TableNameAnno {
     // 参数 参数值 默认值
     String value() default "";
 }
