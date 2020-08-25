@@ -1,13 +1,12 @@
 package Annotation;
 
-import com.sun.xml.internal.bind.v2.runtime.output.SAXOutput;
-
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 /**
  * @program: JavaTest
- * @description: ${description}
+ * @description: ${利用反射获取注解}
  * @author: Mr.ZeroCamel
  * @create: 2020-08-24 22:44
  **/
@@ -23,8 +22,6 @@ public class Demo01 {
             String name = aClass.getName();
             System.out.println(name);
             System.out.println(aClass.hashCode());
-
-
 
 
             // 获取注解
@@ -64,10 +61,14 @@ public class Demo01 {
             String path = "Annotation.Student";
             System.out.println(stringClass == path.getClass());
 
-
-
+            // 获取方法的注解
+            Method setAge = aClass.getMethod("setAge", int.class);
+            MyAnnotation annotation = setAge.getAnnotation(MyAnnotation.class);
+            System.out.println(annotation.age()+"--"+annotation.id()+"--"+annotation.schools()+"--"+annotation.studentName());
 
         } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
     }

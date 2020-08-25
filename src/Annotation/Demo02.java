@@ -23,7 +23,7 @@ public class Demo02 {
         // 获取方法信息
         Method[] methods = aClass.getMethods();
         aClass.getDeclaredMethod("getStudentName",null);
-        aClass.getDeclaredMethod("setId", Integer.class);
+        Method setId = aClass.getDeclaredMethod("setId", Integer.class);
 
         // 获取构造器
         Constructor<?>[] constructors = aClass.getConstructors();

@@ -25,6 +25,7 @@ public class Demo03 {
 
         // 动态调用普通方法
         Method setId = aClass.getDeclaredMethod("setId", Integer.class);
+        // 如果是静态方法 第一个参数可以为null
         setId.invoke(newInstance,111);
         System.out.println(newInstance.getId());
 

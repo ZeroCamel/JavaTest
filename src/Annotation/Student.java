@@ -45,6 +45,7 @@ public  class Student{
         return age;
     }
 
+    @MyAnnotation
     public void setAge(int age) {
         this.age = age;
     }
