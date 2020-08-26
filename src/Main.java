@@ -15,7 +15,7 @@ import Stream.CharUtil;
 import Stream.IO;
 import ThreadAndParallel.Hare;
 import ThreadAndParallel.Tortoise;
-import demo.*;
+import BaseType.*;
 
 import java.io.*;
 import java.net.MalformedURLException;

@@ -1,4 +1,4 @@
-package demo;
+package BaseType;
 
 import static java.lang.System.out;
 

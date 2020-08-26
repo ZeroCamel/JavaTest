@@ -15,7 +15,7 @@ public class Demo01 {
     {
         try {
 
-            // 获取Class 1 副本 引用
+            // 获取Class 1 方法一
             Class<?> aClass = Class.forName("Annotation.Student");
 
             // 获取类名
@@ -56,7 +56,7 @@ public class Demo01 {
                 e.printStackTrace();
             }
 
-            // 获取Class
+            // 获取Class 方法二
             Class<String> stringClass = String.class;
             String path = "Annotation.Student";
             System.out.println(stringClass == path.getClass());

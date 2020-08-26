@@ -34,5 +34,14 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://E:/BaiduNetdiskDownload/jboss-javassist-javassist-rel_3_27_0_ga-5-gb70a41b/jboss-javassist-javassist-b70a41b/javassist.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

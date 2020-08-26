@@ -1,4 +1,4 @@
-package demo;
+package BaseType;
 
 /**
  * @program: JavaTest
