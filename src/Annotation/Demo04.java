@@ -12,6 +12,7 @@ import java.util.Map;
  * @author: Mr.ZeroCamel
  * @create: 2020-08-25 21:46
  **/
+@SuppressWarnings("all")
 public class Demo04 {
 
     public void test01(Map<String,Student> map, List<Student> list)

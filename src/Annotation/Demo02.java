@@ -10,6 +10,7 @@ import java.lang.reflect.Method;
  * @author: zeroCamel
  * @create: 2020-08-25 16:08
  **/
+@SuppressWarnings("all")
 public class Demo02 {
     public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException {
         // 获取Class 1 副本 引用
