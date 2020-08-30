@@ -1,7 +1,5 @@
 package JVM;
 
-import java.io.File;
-
 /**
  * @program: JavaTest
  * @description: JVM类型加载
@@ -34,7 +32,6 @@ public class ClassLoadDemo2 {
         System.out.println(aClass1);
         // BootStrapLoader
         System.out.println(aClass1.getClassLoader());
-
 
 
 

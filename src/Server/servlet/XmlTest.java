@@ -1,15 +1,12 @@
 package Server.servlet;
 
-import Server.basic.Person;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +18,7 @@ import java.util.List;
  * @create: 2020-08-27 16:25
  **/
 public class XmlTest {
-    public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
+    public static void main(String[] args) throws Exception {
         // SAX文件解析 流解析
         // 获取解析工厂
         SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
@@ -34,18 +31,13 @@ public class XmlTest {
         //saxParser.parse(Thread.currentThread().getContextClassLoader().getResourceAsStream("p.xml"), pHandler);
         saxParser.parse(inputStream, pHandler);
 
-        // 输出Person
-        List<Entity> entities = pHandler.getEntities();
-        for (Entity p :entities)
-        {
-            System.out.println(p);
-        }
-
-        List<Mapping> mappings = pHandler.getMappings();
-        for (Mapping p :mappings)
-        {
-            System.out.println(p);
-        }
+        // 输出上下文
+        WebContext webContext = new WebContext(pHandler.getEntities(), pHandler.getMappings());
+        String clz = webContext.getClz("/l");
+        Class<?> aClass = Class.forName(clz);
+        MyServlet o = (MyServlet) aClass.getConstructor().newInstance();
+        System.out.println(o);
+        o.service();
     }
 }
 
@@ -84,7 +76,8 @@ class WebHandler extends DefaultHandler {
             tag = qName;
             if (tag.equals("servlet")) {
                 entity = new Entity();
-            } else if (tag.equals("servlet-mapping")){
+                isMapping = false;
+            } else if (tag.equals("servlet-mapping")) {
                 mapping = new Mapping();
                 isMapping = true;
             }
@@ -94,21 +87,19 @@ class WebHandler extends DefaultHandler {
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
         String contents = new String(ch, start, length).trim();
-        if (isMapping)
-        {
-            if (tag.equals("servlet-name")) {
-                mapping.setName(contents);
-            } else if (tag.equals("url-pattern")) {
-                if (contents.length() > 0) {
+        if (null != tag) {
+
+            if (isMapping) {
+                if (tag.equals("servlet-name")) {
+                    mapping.setName(contents);
+                } else if (tag.equals("url-pattern")) {
                     mapping.addPattern(contents);
                 }
-            }
 
-        } else {
-            if (tag.equals("servlet-name")) {
-                entity.setName(contents);
-            } else if (tag.equals("servlet-class")) {
-                if (contents.length() > 0) {
+            } else {
+                if (tag.equals("servlet-name")) {
+                    entity.setName(contents);
+                } else if (tag.equals("servlet-class")) {
                     entity.setClz(contents);
                 }
             }
@@ -119,13 +110,10 @@ class WebHandler extends DefaultHandler {
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
         System.out.println(qName + "-->解析结束");
-        if (null != qName) {
-            if (qName.equals("servlet")) {
-                entities.add(entity);
-            } else if (qName.equals("servlet-mapping"))
-            {
-                mappings.add(mapping);
-            }
+        if (qName.equals("servlet")) {
+            entities.add(entity);
+        } else if (qName.equals("servlet-mapping")) {
+            mappings.add(mapping);
         }
         tag = null;
     }
