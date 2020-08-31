@@ -10,7 +10,10 @@ import java.util.Date;
 
 /**
  * @program: JavaTest
- * @description: ${ServerSocket}
+ * @description: ${ServerSocket
+ * 1、获取请求协议
+ * 2、返回响应协议
+ * }
  * @author: Mr.ZeroCamel
  * @create: 2020-08-29 20:47
  **/
@@ -80,6 +83,41 @@ public class ServletSocket {
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(client.getOutputStream()));
             bufferedWriter.write(responseInfo.toString());
             bufferedWriter.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("客户端错误...");
+        }
+    }
+
+
+    public void Receive1()
+    {
+        try {
+            Socket client = serverSocket.accept();
+            System.out.println("一个客户端建立了连接...");
+
+            // 获取请求
+            InputStream inputStream = client.getInputStream();
+            byte[] datas = new byte[1024*10];
+            int len = inputStream.read(datas);
+            // 数组越界异常
+            String request = new String(datas, 0, len);
+            System.out.println(request);
+
+            // 返回响应协议
+            Response response = new Response(client);
+            response.print("<html>");
+            response.print("<head>");
+            response.print("<title>");
+            response.print("服务器响应成功!");
+            response.print("</title>");
+            response.print("</head>");
+            response.print("<body>");
+            response.print("响应体....");
+            response.print("</body>");
+            response.print("</html>");
+
 
         } catch (IOException e) {
             e.printStackTrace();
