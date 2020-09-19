@@ -12,7 +12,7 @@ public class Racer02 implements Callable<Integer> {
 
     private String winner=null;
 
-    private int TOTAL_STEP = 100;
+    private static int TOTAL_STEP = 100;
 
     @Override
     public Integer call() throws InterruptedException {
@@ -20,7 +20,8 @@ public class Racer02 implements Callable<Integer> {
         for (int steps=1;steps<=TOTAL_STEP;steps++)
         {
             // 模拟兔子休息
-            if (Thread.currentThread().getName().equals("pool-1-thread-1")&&steps%5==0)
+            String strThread = "pool-1-thread-1";
+            if (Thread.currentThread().getName().equals(strThread)&&steps%5==0)
             {
                Thread.sleep(100);
             }

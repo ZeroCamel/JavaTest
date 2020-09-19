@@ -68,7 +68,8 @@ class PHandler extends DefaultHandler {
         System.out.println(qName + "-->解析开始");
         if (null != qName) {
             tag = qName;
-            if (tag.equals("person")) {
+            String comStr = "person";
+            if (tag.equals(comStr)) {
                 person = new Person();
             }
         }
@@ -85,9 +86,11 @@ class PHandler extends DefaultHandler {
 
         if (null!=tag)
         {
-            if (tag.equals("name")) {
+            String nodeName = "name";
+            String nodeAge = "age";
+            if (tag.equals(nodeName)) {
                 person.setName(trim);
-            } else if (tag.equals("age")) {
+            } else if (tag.equals(nodeAge)) {
                 if (trim.length() > 0) {
                     person.setAge(Integer.valueOf(trim));
                 }
@@ -100,7 +103,8 @@ class PHandler extends DefaultHandler {
     public void endElement(String uri, String localName, String qName) throws SAXException {
         System.out.println(qName + "-->解析结束");
         if (null != qName) {
-            if (qName.equals("person")) {
+            String nodePerson = "person";
+            if (qName.equals(nodePerson)) {
                 persons.add(person);
             }
         }

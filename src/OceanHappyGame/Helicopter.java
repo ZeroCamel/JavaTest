@@ -14,7 +14,8 @@ public class Helicopter extends AirPlane {
         super(name);
     }
 
-    public void Fly()
+    @Override
+    public void fly()
     {
         out.printf("飞机 %s 在飞%n",name);
     }

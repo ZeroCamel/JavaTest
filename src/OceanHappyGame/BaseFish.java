@@ -20,6 +20,9 @@ public abstract class BaseFish implements Swimmer{
         return  name;
     }
 
+    /**
+     *
+     */
     @Override
     public abstract void swim();
 }

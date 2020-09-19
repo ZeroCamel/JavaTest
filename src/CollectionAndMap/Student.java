@@ -7,12 +7,12 @@ package CollectionAndMap;
  * @create: 2020-05-04 21:27
  **/
 public class Student {
-    private String Name;
-    private String Number;
+    private String name;
+    private String number;
     public Student(String name,String number)
     {
-        this.Name = name;
-        this.Number = number;
+        this.name = name;
+        this.number = number;
     }
 
     @Override
@@ -35,13 +35,13 @@ public class Student {
     public int hashCode()
     {
         int hash = 5;
-        hash = 13*hash+(this.Name!=null?this.Name.hashCode():0);
-        hash = 13*hash+(this.Number!=null?this.Number.hashCode():0);
+        hash = 13*hash+(this.name!=null?this.name.hashCode():0);
+        hash = 13*hash+(this.number!=null?this.number.hashCode():0);
         return hash;
     }
 
     @Override
     public String toString() {
-        return String.format("(%s,%s)",this.Name,this.Number);
+        return String.format("(%s,%s)",this.name,this.number);
     }
 }

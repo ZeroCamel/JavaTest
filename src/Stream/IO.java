@@ -492,7 +492,8 @@ public class IO {
              BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out))
         ) {
             String msg = "";
-            while (!msg.equals("exit"))
+            String strExit = "exit";
+            while (!msg.equals(strExit))
             {
                msg = bufferedReader.readLine();
                bufferedWriter.write(msg);

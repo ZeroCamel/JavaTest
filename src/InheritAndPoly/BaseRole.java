@@ -10,7 +10,7 @@ public abstract class BaseRole {
     // 语法细节 成员属性
     // 1、private 当前类所属 子类只能通过父类方法存取
     // 2、protected 相同包中的类可以直接存取
-    protected String Name;
+    protected String name;
     private int level;
     private int blood;
 
@@ -30,11 +30,11 @@ public abstract class BaseRole {
     }
     public String getName()
     {
-        return this.Name;
+        return this.name;
     }
     public void setName(String name)
     {
-        this.Name = name;
+        this.name = name;
     }
 
     /**
@@ -51,6 +51,6 @@ public abstract class BaseRole {
     @Override
     public String toString()
     {
-        return String.format("剑士 （%s,%s）", this.Name, Name);
+        return String.format("剑士 （%s,%s）", this.name, name);
     }
 }

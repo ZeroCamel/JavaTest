@@ -13,7 +13,7 @@ public class Racer01 implements Runnable {
 
     private static String winner=null;
 
-    private int TOTAL_STEP = 100;
+    private static int TOTAL_STEP = 100;
 
     @Override
     public void run() {
@@ -21,7 +21,8 @@ public class Racer01 implements Runnable {
         for (int steps=1;steps<=TOTAL_STEP;steps++)
         {
             // 模拟兔子休息
-            if (Thread.currentThread().getName().equals("rabbit")&&steps%5==0)
+            String strRabbit = "rabbit";
+            if (Thread.currentThread().getName().equals(strRabbit)&&steps%5==0)
             {
                 try {
                     Thread.sleep(100);

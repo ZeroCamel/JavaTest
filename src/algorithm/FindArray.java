@@ -1,4 +1,4 @@
-package Algorithm;
+package algorithm;
 
 /**
  * @program: JavaTest
@@ -23,7 +23,7 @@ public class FindArray {
             while(arr[j] >= x && i < j){
                 j--;
             }
-            // 2、找到小于基准的目标值 并填充到做分区；左哨兵向右进一
+            // 2、找到小于基准的目标值 并填充到左分区；左哨兵向右进一
             if(i < j) {
                 arr[i] = arr[j];
                 i++;

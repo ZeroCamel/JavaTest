@@ -23,13 +23,13 @@ public class ServletSocket {
 
     public static void main(String[] args) {
         ServletSocket servletSocket = new ServletSocket();
-        servletSocket.Start();
+        servletSocket.start();
     }
 
-    public void Start() {
+    public void start() {
         try {
             serverSocket = new ServerSocket(8080);
-            Receive();
+            receive();
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("服务器启动失败...");
@@ -37,7 +37,7 @@ public class ServletSocket {
 
     }
 
-    public void Receive()
+    public void receive()
     {
         try {
             Socket client = serverSocket.accept();
@@ -91,7 +91,7 @@ public class ServletSocket {
     }
 
 
-    public void Receive1()
+    public void receive1()
     {
         try {
             Socket client = serverSocket.accept();
@@ -125,7 +125,7 @@ public class ServletSocket {
         }
     }
 
-    public void Stop()
+    public void stop()
     {
 
     }

@@ -26,7 +26,7 @@ public class MemberSeria implements Serializable {
         return String.format("(%s,%s,%s)",number,name,age);
     }
 
-    public void Save()
+    public void save()
     {
         try(ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(number))) {
             output.writeObject(this);
@@ -37,7 +37,7 @@ public class MemberSeria implements Serializable {
         }
     }
 
-    public static MemberSeria Load(String number)
+    public static MemberSeria load(String number)
     {
         MemberSeria member = null;
         try(ObjectInputStream input = new ObjectInputStream(new FileInputStream(number))){

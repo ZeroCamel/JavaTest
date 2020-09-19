@@ -48,6 +48,12 @@ class WebHandler extends DefaultHandler {
     private Entity entity;
     private Mapping mapping;
 
+    private static String NODE_NAME_SERVLET="servlet";
+    private static String NODE_NAME_SERVLET_MAP="servlet-mapping";
+    private static String NODE_NAME_SERVLET_NAME="servlet-name";
+    private static String NODE_NAME_URL_PATTERN="url-pattern";
+    private static String NODE_NAME_SERVLET_CLASS="servlet-class";
+
     /**
      * 存储操作的标签
      */
@@ -74,10 +80,10 @@ class WebHandler extends DefaultHandler {
         System.out.println(qName + "-->解析开始");
         if (null != qName) {
             tag = qName;
-            if (tag.equals("servlet")) {
+            if (tag.equals(NODE_NAME_SERVLET)) {
                 entity = new Entity();
                 isMapping = false;
-            } else if (tag.equals("servlet-mapping")) {
+            } else if (tag.equals(NODE_NAME_SERVLET_MAP)) {
                 mapping = new Mapping();
                 isMapping = true;
             }
@@ -90,16 +96,16 @@ class WebHandler extends DefaultHandler {
         if (null != tag) {
 
             if (isMapping) {
-                if (tag.equals("servlet-name")) {
+                if (tag.equals(NODE_NAME_SERVLET_NAME)) {
                     mapping.setName(contents);
-                } else if (tag.equals("url-pattern")) {
+                } else if (tag.equals(NODE_NAME_URL_PATTERN)) {
                     mapping.addPattern(contents);
                 }
 
             } else {
-                if (tag.equals("servlet-name")) {
+                if (tag.equals(NODE_NAME_SERVLET_NAME)) {
                     entity.setName(contents);
-                } else if (tag.equals("servlet-class")) {
+                } else if (tag.equals(NODE_NAME_SERVLET_CLASS)) {
                     entity.setClz(contents);
                 }
             }
@@ -110,9 +116,9 @@ class WebHandler extends DefaultHandler {
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
         System.out.println(qName + "-->解析结束");
-        if (qName.equals("servlet")) {
+        if (qName.equals(NODE_NAME_SERVLET)) {
             entities.add(entity);
-        } else if (qName.equals("servlet-mapping")) {
+        } else if (qName.equals(NODE_NAME_SERVLET_MAP)) {
             mappings.add(mapping);
         }
         tag = null;

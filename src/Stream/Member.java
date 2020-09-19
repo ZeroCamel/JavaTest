@@ -25,7 +25,7 @@ public class Member {
         return String.format("(%s, %s, %s)",number,name,age);
     }
 
-    public void Save() throws IOException {
+    public void save() throws IOException {
         try (DataOutputStream output = new DataOutputStream(new FileOutputStream(number))) {
             output.writeUTF(number);
             output.writeUTF(name);

@@ -1,7 +1,5 @@
 package Server.socket;
 
-import com.sun.org.apache.bcel.internal.generic.SWITCH;
-
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -83,6 +81,8 @@ public class Response {
             case 505:
                 headInfo.append("Server Error").append(CRLF);
                 break;
+            default:
+                    break;
         }
 
         headInfo.append("Date:").append(new Date()).append(CRLF);

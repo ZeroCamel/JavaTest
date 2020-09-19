@@ -23,6 +23,8 @@ public class ThreadLocalDemo4 {
             threadLocal.set(100);
             System.out.println(Thread.currentThread().getName()+"-->"+threadLocal.get());
         }).start();
+
+        threadLocal.remove();
     }
 
 }

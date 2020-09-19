@@ -10,7 +10,7 @@ import static java.lang.System.out;
  **/
 public abstract class BaseAnoymousClass implements InterOne {
     /**
-     *
+     * 做一些事
      */
     @Override
     public abstract void doSome();

@@ -1,5 +1,4 @@
-import Algorithm.FindArray;
-import Algorithm.Reverse;
+import BaseType.*;
 import ClientQueueManage.Client;
 import ClientQueueManage.ClientEvent;
 import ClientQueueManage.ClientListener;
@@ -15,7 +14,8 @@ import Stream.CharUtil;
 import Stream.IO;
 import ThreadAndParallel.Hare;
 import ThreadAndParallel.Tortoise;
-import BaseType.*;
+import algorithm.FindArray;
+import algorithm.Reverse;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -57,8 +57,8 @@ public class Main {
         out.println(s.x);
 
         //region 算法
-        String reverS = "abcdef";
-        String strVer=Reverse.reverseStr(reverS,reverS.length());
+        String reverStr = "abcdef";
+        String strVer=Reverse.reverseStr(reverStr,reverStr.length());
         out.println(strVer);
 
         String revStr = "你好";
