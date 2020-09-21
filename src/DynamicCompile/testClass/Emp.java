@@ -1,4 +1,4 @@
-package DynamicCompile.testClass;
+package dynamiccompile.testClass;
 
 /**
  * @program: JavaTest
