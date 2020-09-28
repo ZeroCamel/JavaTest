@@ -1,4 +1,4 @@
-package iInheritandpoly;
+package inheritandpoly;
 
 import static java.lang.System.out;
 

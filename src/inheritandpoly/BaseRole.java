@@ -1,4 +1,4 @@
-package iInheritandpoly;
+package inheritandpoly;
 
 /**
  * @program: JavaTest
