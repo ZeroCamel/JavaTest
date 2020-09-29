@@ -17,15 +17,26 @@ public class CusHashMap {
      */
     private int size;
 
+    /**
+     * 装载因子
+     */
+    private double LOAD_FACTOR = 0.75d;
+
     public CusHashMap() {
 
         // 长度为2的整数次幂
         table = new Node[16];
     }
 
+    public void ensureCapacity()
+    {
+
+    }
+
     public void put(Object key, Object value) {
 
-        // 如果完善还需要数组扩容
+        // 数组扩容
+        ensureCapacity();
 
         Node newNode = new Node();
         newNode.hashCode = getHashCode(key.hashCode(), table.length);
