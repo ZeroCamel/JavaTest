@@ -14,7 +14,7 @@ public class BaseType {
     * @Author: Mr.ZeroCamel
     * @Date: 2020/4/18
     */
-    public void dataConvert()
+    public static void dataConvert()
     {
         /*一、JAVA数值运算 原码 反码 补码*/
         /*编译成功 精度损失*/
@@ -38,5 +38,14 @@ public class BaseType {
         System.out.println(wx.equals(wy));
 
         String[] strs= new String[5];
+
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("aaa");
+        stringBuffer.append("bbb");
+        System.out.println(stringBuffer.toString());
+    }
+
+    public static void main(String[] args) {
+        dataConvert();
     }
 }
