@@ -8,7 +8,12 @@ package basetype;
  **/
 public class BaseType {
     /**
-    * @Description: ${int byte 互转}$
+    * @Description: ${int byte 互转
+     * 正数的原码反码补码都一致
+     * 负数的反码是除符号位按位取反
+     * 负数的补码是反码加1
+     * java中变量存储是按补码保存的
+     * }$
     * @Param: []
     * @return: void
     * @Author: Mr.ZeroCamel
@@ -18,6 +23,7 @@ public class BaseType {
     {
         /*一、JAVA数值运算 原码 反码 补码*/
         /*编译成功 精度损失*/
+
         byte a = 100;
         byte b = 50;
         byte c = (byte) (a+b);
