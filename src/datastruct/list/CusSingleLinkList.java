@@ -8,4 +8,19 @@ package datastruct.list;
  **/
 public class CusSingleLinkList {
 
+    private SNode listHead;
+
+    private int size;
+
+    public CusSingleLinkList()
+    {
+        listHead.data = null;
+        listHead.next = null;
+    }
+
+    public boolean insertList(SNode listHead,int locate,int key)
+    {
+
+        return true;
+    }
 }
