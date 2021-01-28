@@ -1,0 +1,13 @@
+      member = new Member(input.readUTF(),input.readUTF(),input.readInt());
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return  member;
+    }
+
+}
