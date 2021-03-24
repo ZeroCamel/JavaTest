@@ -120,7 +120,7 @@ public class Reverse {
     }
 
     /**
-     * 使用StringBuilder 避免了 栈频繁的内存分配
+     * 使用StringBuilder 避免了频繁的内存分配
      * @param s
      * @param n
      * @return
