@@ -1,2 +1,3 @@
 # JavaTest
-JAVA 基础知识复习
+* Java Basic Knowledge
+* Java Daily Practice
