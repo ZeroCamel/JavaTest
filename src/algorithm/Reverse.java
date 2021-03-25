@@ -130,6 +130,8 @@ public class Reverse {
         for (int i = n; i < s.length() + n; i++) {
             stringBuilder.append(s.charAt(i % s.length()));
         }
+
+
         return  stringBuilder.toString();
     }
 }

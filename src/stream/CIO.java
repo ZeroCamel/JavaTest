@@ -9,6 +9,7 @@ import org.apache.commons.io.filefilter.SuffixFileFilter;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.net.URL;
 import java.util.Collection;
 import java.util.List;
@@ -23,34 +24,33 @@ import java.util.List;
  **/
 public class CIO {
 
-    private static final String PRE_PATH="src/Stream/file";
+    private static final String PRE_PATH = "src/Stream/file";
 
     /**
      * 相关文件统计
      */
-    public static void fileStatistic()
-    {
+    public static void fileStatistic() {
         // 统计文件的大小
         File file = new File(PRE_PATH + "/1.txt");
         long sizeOf = FileUtils.sizeOf(file);
-        System.out.println((int)sizeOf);
+        System.out.println((int) sizeOf);
         // 统计目录的大小
         long sizeOfDirectory = FileUtils.sizeOfDirectory(new File(PRE_PATH));
-        System.out.println((int)sizeOfDirectory);
+        System.out.println((int) sizeOfDirectory);
 
         // 列出子文件 不为空
-        Collection<File> fileCollection = FileUtils.listFiles(new File(PRE_PATH+"/dir"), EmptyFileFilter.NOT_EMPTY, null);
+        Collection<File> fileCollection = FileUtils.listFiles(new File(PRE_PATH + "/dir"), EmptyFileFilter.NOT_EMPTY, null);
         System.out.println(fileCollection);
 
-        fileCollection = FileUtils.listFiles(new File(PRE_PATH+"/dir"), EmptyFileFilter.NOT_EMPTY, DirectoryFileFilter.INSTANCE);
+        fileCollection = FileUtils.listFiles(new File(PRE_PATH + "/dir"), EmptyFileFilter.NOT_EMPTY, DirectoryFileFilter.INSTANCE);
         System.out.println(fileCollection);
 
         // 文件后缀过滤
-        fileCollection= FileUtils.listFiles(new File(PRE_PATH+"/dir"), new SuffixFileFilter("txt"), DirectoryFileFilter.INSTANCE);
+        fileCollection = FileUtils.listFiles(new File(PRE_PATH + "/dir"), new SuffixFileFilter("txt"), DirectoryFileFilter.INSTANCE);
         System.out.println(fileCollection);
 
         // 过滤器可以与或关系
-        fileCollection= FileUtils.listFiles(new File(PRE_PATH+"/dir"),FileFilterUtils.or(new SuffixFileFilter("txt"),new SuffixFileFilter(".java"),EmptyFileFilter.EMPTY), DirectoryFileFilter.INSTANCE);
+        fileCollection = FileUtils.listFiles(new File(PRE_PATH + "/dir"), FileFilterUtils.or(new SuffixFileFilter("txt"), new SuffixFileFilter(".java"), EmptyFileFilter.EMPTY), DirectoryFileFilter.INSTANCE);
         System.out.println(fileCollection);
 
     }
@@ -58,8 +58,7 @@ public class CIO {
     /**
      * 读取文件
      */
-    public static void readFileByFileUtils()
-    {
+    public static void readFileByFileUtils() {
         try {
 
             // 读取文件至字符串
@@ -74,8 +73,7 @@ public class CIO {
             System.out.println(stringList);
             // 迭代器
             LineIterator lineIterator = FileUtils.lineIterator(new File(PRE_PATH + "/1.txt"), "utf-8");
-            while (lineIterator.hasNext())
-            {
+            while (lineIterator.hasNext()) {
                 System.out.println(lineIterator.nextLine());
             }
 
@@ -87,13 +85,12 @@ public class CIO {
     /**
      * 写出内容
      */
-    public static void writeFileByFileUtils()
-    {
+    public static void writeFileByFileUtils() {
         try {
 
-            FileUtils.write(new File(PRE_PATH+"/fileUtilsOutput.txt"),"测试写出文件","utf-8",true);
-            FileUtils.writeStringToFile(new File(PRE_PATH+"/fileUtilsOutput.txt"),"测试写出文件","utf-8",true);
-            FileUtils.writeByteArrayToFile(new File(PRE_PATH+"/2.txt"),"测试字节数组输出".getBytes("utf-8"),true);
+            FileUtils.write(new File(PRE_PATH + "/fileUtilsOutput.txt"), "测试写出文件", "utf-8", true);
+            FileUtils.writeStringToFile(new File(PRE_PATH + "/fileUtilsOutput.txt"), "测试写出文件", "utf-8", true);
+            FileUtils.writeByteArrayToFile(new File(PRE_PATH + "/2.txt"), "测试字节数组输出".getBytes("utf-8"), true);
 
 
         } catch (IOException e) {
@@ -104,19 +101,18 @@ public class CIO {
     /**
      * 复制文件
      */
-    public static void copyFileByFileUtils()
-    {
+    public static void copyFileByFileUtils() {
         try {
             // 复制文件
-            FileUtils.copyFile(new File(PRE_PATH+"/output2.png"),new File(PRE_PATH+"/output2-copy.png"));
+            FileUtils.copyFile(new File(PRE_PATH + "/output2.png"), new File(PRE_PATH + "/output2-copy.png"));
             // 复制文件到目录
-            FileUtils.copyFileToDirectory(new File(PRE_PATH+"/output2.png"),new File(PRE_PATH+"/dir/"));
+            FileUtils.copyFileToDirectory(new File(PRE_PATH + "/output2.png"), new File(PRE_PATH + "/dir/"));
             // 复制目录
-            FileUtils.copyDirectory(new File(PRE_PATH+"/dir"),new File(PRE_PATH+"/dir2"));
+            FileUtils.copyDirectory(new File(PRE_PATH + "/dir"), new File(PRE_PATH + "/dir2"));
             // 复制目录到目录
-            FileUtils.copyDirectoryToDirectory(new File(PRE_PATH+"/dir"),new File(PRE_PATH+"/dir2"));
+            FileUtils.copyDirectoryToDirectory(new File(PRE_PATH + "/dir"), new File(PRE_PATH + "/dir2"));
 
-            FileUtils.copyURLToFile(new URL(""),new File(""));
+            FileUtils.copyURLToFile(new URL(""), new File(""));
 
 
         } catch (IOException e) {
