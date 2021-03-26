@@ -4,6 +4,7 @@ import com.sun.javafx.iio.gif.GIFImageLoaderFactory;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 单链表
@@ -50,8 +51,8 @@ public class SingleLinkedListDemo {
     }
 
     /**
-     * 所有元素按照升序排列
-     * 去除重复节点
+     * LeetCode 82 去除重复节点
+     * 法一 所有元素按照升序排列
      *
      * @param head
      */
@@ -67,7 +68,7 @@ public class SingleLinkedListDemo {
     }
 
     /**
-     * 删除重复节点
+     * leetCode 82 删除重复节点
      * 测试用例：重复元素分布 第一个 中间 单链表后面
      * 1 1 1 1 2 2 2 3 3 4 5 5
      * 1 1 1 2 2 3
@@ -97,7 +98,7 @@ public class SingleLinkedListDemo {
     }
 
     /**
-     * 删除重复节点 针对重复元素出现奇数次的情况
+     * LeetCode 82 删除重复节点 针对重复元素出现奇数次的情况
      * 核心测试用例：
      * [1,2,2,2,2,2,3,3,4,4,5]
      * [1,1]
@@ -106,7 +107,6 @@ public class SingleLinkedListDemo {
      * <p>
      * 问题：已删除节点置空问题 可以直接返回 Null
      * 重构一个新链表过滤重复元素
-     *
      *
      * @param head
      * @return
@@ -134,10 +134,9 @@ public class SingleLinkedListDemo {
                     q = q.next;
                 }
 
-                if (q.val == p.val && q.next == null)
-                {
+                if (q.val == p.val && q.next == null) {
                     if (pre.val == q.val)
-                        return  null;
+                        return null;
                     pre.next = null;
                     return head;
                 }
@@ -153,7 +152,18 @@ public class SingleLinkedListDemo {
         return head;
     }
 
-
+    /**
+     * LeetCode 83
+     * 定义：删除重复元素 是每个元素 保留一个
+     * 思路：
+     * @return
+     */
+    public static ListNode deleteDuplicateNodeSaveOne(ListNode listNode)
+    {
+        if (listNode == null)
+            return  null;
+        return  null;
+    }
 }
 
 class ListNode {
@@ -174,5 +184,18 @@ class ListNode {
 
     public void setNext(ListNode listNode) {
         this.next = listNode;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ListNode)) return false;
+        ListNode listNode = (ListNode) o;
+        return val == listNode.val && next.equals(listNode.next);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(val, next);
     }
 }

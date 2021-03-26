@@ -1,7 +1,5 @@
 package basetype;
 
-import javax.print.DocFlavor;
-
 /**
  * @program: JavaTest
  * @description: ${基本数据类型注意点}
@@ -53,8 +51,7 @@ public class BaseType {
 
     }
 
-    public static void str()
-    {
+    public static void str() {
         String str1 = "计算机";
         String str2 = "计算机";
         System.out.println("str1==str2:" + (str1 == str2));
@@ -80,8 +77,7 @@ public class BaseType {
 
     }
 
-    public static void str1()
-    {
+    public static void str1() {
         String s = new String("1");
 
         s.intern();
@@ -100,8 +96,7 @@ public class BaseType {
         System.out.println(s3 == s4);
     }
 
-    public static void str2()
-    {
+    public static void str2() {
         String s2 = new String("abc");
         String s1 = "abc";
         String s3 = s2.intern();
@@ -111,24 +106,20 @@ public class BaseType {
         System.out.println(s2 == s3);
     }
 
-    public static  void str3()
-    {
+    public static void str3() {
         String s = new String("1");
         String s2 = "1";
         s.intern();
         System.out.println(s == s2);
 
-
         String s3 = new String("1") + new String("1");
         String s4 = "11";
         s3.intern();
 
-
         System.out.println(s3 == s4);
     }
 
-    public  static  void str4()
-    {
+    public static void str4() {
         String s = new String("hhh");
         char c = s.charAt(1);
         System.out.println(c);
@@ -136,11 +127,23 @@ public class BaseType {
         int hhc = s.compareTo("hhc");
         System.out.println(hhc);
 
+    }
 
-
+    /**
+     * HashCode 散列码
+     * 变量s与t HashCode 值一样
+     */
+    public static void hashCodeDemo()
+    {
+        String s = "ok";
+        StringBuilder stringBuilder = new StringBuilder(s);
+        System.out.println(s.hashCode()+"-"+stringBuilder.hashCode());
+        String t = new String("ok");
+        StringBuilder stringBuilder1 = new StringBuilder(t);
+        System.out.println(t.hashCode() +"-"+stringBuilder1.hashCode());
     }
 
     public static void main(String[] args) {
-        str4();
+        hashCodeDemo();
     }
 }
