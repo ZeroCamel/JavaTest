@@ -1,30 +1,45 @@
 package algorithm;
 
+import java.util.ArrayList;
+
 /**
  * @program: JavaTest
- * @description: ${description}
+ * @description: ${旋转}
  * @author: Mr.ZeroCamel
  * @create: 2020-06-13 10:28
  **/
 public class Reverse {
 
     public static void main(String[] args) {
-        String str = "abcdef";
-        String reverResult = reverseStr(str, 1);
-        String reverStr = reverseLeftWord(str, 2);
-        System.out.println(reverResult);
-        System.out.println(reverStr2(str));
-        System.out.println(reverStr);
+//        String str = "abcdef";
+//        String reverResult = reverseStr(str, 1);
+//        String reverStr = reverseLeftWord(str, 2);
+//        System.out.println(reverResult);
+//        System.out.println(reverStr2(str));
+//        System.out.println(reverStr);
+//
+//        String reverseStr = modeStrLeftWord2(str, 2);
+//        System.out.println(reverseStr);
+//
+//        String strCom = "abc";
+//        if (strCom.equals("abc")) {
+//            System.out.println("true");
+//        } else {
+//            System.out.println("false");
+//        }
 
-        String reverseStr = modeStrLeftWord2(str, 2);
-        System.out.println(reverseStr);
+        // 整型序列反转
+        int reverse = Integer.reverse(10);
+        int intValue = reverseBits(10);
+        String s = Integer.toString(100, 2);
+        System.out.println(s + "\n");
+        System.out.println(reverse + "-" + intValue);
 
-        String strCom = "abc";
-        if (strCom.equals("abc")) {
-            System.out.println("true");
-        } else {
-            System.out.println("false");
-        }
+        System.out.println(10 >> 1);
+        int i = 10;
+        i <<= 16;
+        System.out.println(i);
+        System.out.println(Math.pow(2, 16));
     }
 
     public static String reverseStr(String originStr, int length) {
@@ -107,6 +122,7 @@ public class Reverse {
     /**
      * 取余操作
      * 执行用时 68MS
+     *
      * @param s
      * @param n
      * @return
@@ -116,11 +132,12 @@ public class Reverse {
         for (int i = n; i < s.length() + n; i++) {
             reverStr += s.charAt(i % s.length());
         }
-        return  reverStr;
+        return reverStr;
     }
 
     /**
      * 使用StringBuilder 避免了频繁的内存分配
+     *
      * @param s
      * @param n
      * @return
@@ -130,8 +147,23 @@ public class Reverse {
         for (int i = n; i < s.length() + n; i++) {
             stringBuilder.append(s.charAt(i % s.length()));
         }
+        return stringBuilder.toString();
+    }
 
-
-        return  stringBuilder.toString();
+    /**
+     * Leetcode 190 颠倒二进制位
+     * <p>
+     * 思路一：拆分反转 int 4个字节 32位 拆分不补0
+     *
+     * @param i
+     * @return
+     */
+    public static int reverseBits(int i) {
+        i = (i & 0x55555555) << 1 | (i >>> 1) & 0x55555555;
+        i = (i & 0x33333333) << 2 | (i >>> 2) & 0x33333333;
+        i = (i & 0x0f0f0f0f) << 4 | (i >>> 4) & 0x0f0f0f0f;
+        i = (i << 24) | ((i & 0xff00) << 8) |
+                ((i >>> 8) & 0xff00) | (i >>> 24);
+        return i;
     }
 }
