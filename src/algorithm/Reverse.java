@@ -4,7 +4,10 @@ import java.util.ArrayList;
 
 /**
  * @program: JavaTest
- * @description: ${旋转}
+ * @description: ${旋转
+ * 补充知识点：
+ * 逻辑左右移
+ * 算术左右移}
  * @author: Mr.ZeroCamel
  * @create: 2020-06-13 10:28
  **/
@@ -34,12 +37,23 @@ public class Reverse {
         String s = Integer.toString(100, 2);
         System.out.println(s + "\n");
         System.out.println(reverse + "-" + intValue);
+        System.out.println(reverseBits2(10));
 
+        // 20 逻辑左移=算术左移 相等于/2
+        System.out.println(10 << 1);
+        // -20
+        System.out.println(-10 << 1);
+        // 5 算术右移 相当于*2
         System.out.println(10 >> 1);
-        int i = 10;
-        i <<= 16;
-        System.out.println(i);
-        System.out.println(Math.pow(2, 16));
+        // -5
+        System.out.println(-10 >> 1);
+        // 5 逻辑右移
+        System.out.println(10 >>> 1);
+        // 2147483643
+        // 逻辑右移 负数-补码 无符号右移 低位溢出 高位补0 之后变为正数后运算
+        // 1000-1010 1111-0101 1111-0110 右移一位 0111-1011 =》0111-1011 2^31-1-4
+        System.out.println(-10 >>> 1);
+
     }
 
     public static String reverseStr(String originStr, int length) {
@@ -153,17 +167,48 @@ public class Reverse {
     /**
      * Leetcode 190 颠倒二进制位
      * <p>
-     * 思路一：拆分反转 int 4个字节 32位 拆分不补0
-     *
+     * 思路一：拆分反转 int 4个字节 32位 拆分不补0 逐位运算
+     * 思路二: 位运算分治 每两位为一组
+     * 高8位有两种置换方法：
+     *  1、最高八位 最低八位 并且 中间16位 分两组互换
+     *  2、高16位 低16位 互换
      * @param i
      * @return
      */
+    private static final int M8 = 0x00ff00ff;
     public static int reverseBits(int i) {
+
+        // 1、一位 0101 奇偶互换 取出奇数位放在偶数位上 | 将偶数位放在奇数位上并取出
         i = (i & 0x55555555) << 1 | (i >>> 1) & 0x55555555;
+        // 2、二位 奇偶互换 0011
         i = (i & 0x33333333) << 2 | (i >>> 2) & 0x33333333;
+        // 3、四位 奇偶互换 00001111 低8位互换结束
         i = (i & 0x0f0f0f0f) << 4 | (i >>> 4) & 0x0f0f0f0f;
-        i = (i << 24) | ((i & 0xff00) << 8) |
-                ((i >>> 8) & 0xff00) | (i >>> 24);
+        // 4、八位 0xff00
+        // i = (i << 24) | ((i & 0xff00) << 8) |
+        //        ((i >>> 8) & 0xff00) | (i >>> 24);
+
+        // i = (i & M8) << 8 | (i >>> 8) & M8;
         return i;
+    }
+
+    /**
+     * 逐位颠倒
+     * 思路：
+     * 1、枚举二进制最后一位并进行左移运算
+     * 2、左移之后右移取下一位 重复步骤一
+     * 3、结束标识位移32并且输入参数为0
+     * 注意 与或操作可以进行取值操作
+     *
+     * @param n
+     * @return
+     */
+    public static int reverseBits2(int n) {
+        int rev = 0;
+        for (int i = 0; i < 32 && n != 0; ++i) {
+            rev |= (n & 1) << (31 - i);
+            n >>>= 1;
+        }
+        return rev;
     }
 }
