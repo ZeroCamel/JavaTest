@@ -1,5 +1,8 @@
 package basetype;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @program: JavaTest
  * @description: ${基本数据类型注意点}
@@ -130,20 +133,42 @@ public class BaseType {
     }
 
     /**
+     * 形参和实参的区别
+     * 1、形参如果在变量内部分配实体变量 执行完如果没有返回参数将自动销毁
+     * 2、导致引用失败
+     *
+     * @param a
+     * @return
+     */
+    public static void staticFun(List<String> a) {
+        a = new ArrayList<String>();
+        a.add("abc");
+    }
+
+    public static void str5() {
+        String str1 = "hello";
+        String str2 = "he" + new String("llo");
+        String str3 = "he" + "llo";
+        System.err.println(str1 == str2);
+        System.err.println(str1 == str3);
+    }
+
+    /**
      * HashCode 散列码
      * 变量s与t HashCode 值一样
      */
-    public static void hashCodeDemo()
-    {
+    public static void hashCodeDemo() {
         String s = "ok";
         StringBuilder stringBuilder = new StringBuilder(s);
-        System.out.println(s.hashCode()+"-"+stringBuilder.hashCode());
+        System.out.println(s.hashCode() + "-" + stringBuilder.hashCode());
         String t = new String("ok");
         StringBuilder stringBuilder1 = new StringBuilder(t);
-        System.out.println(t.hashCode() +"-"+stringBuilder1.hashCode());
+        System.out.println(t.hashCode() + "-" + stringBuilder1.hashCode());
     }
 
     public static void main(String[] args) {
-        hashCodeDemo();
+        List<String> a = null;
+        staticFun(a);
+        System.out.println(a.size());
     }
 }
