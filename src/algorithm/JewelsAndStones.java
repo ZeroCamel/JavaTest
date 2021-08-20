@@ -56,7 +56,7 @@ public class JewelsAndStones {
      * @return
      */
     public static int numJewelsInStonesOpt(String jewels, String stones) {
-        HashSet<Character> chars = new HashSet<>();
+        HashSet<Character> chars = new HashSet<Character>();
 
         int jewelsLen = jewels.length();
         int stoneLen = stones.length();

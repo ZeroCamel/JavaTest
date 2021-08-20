@@ -1,4 +1,4 @@
-package designpattern;
+package designpattern.create;
 
 /**
  * 对象克隆

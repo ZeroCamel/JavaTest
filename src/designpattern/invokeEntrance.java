@@ -1,5 +1,7 @@
 package designpattern;
 
+import designpattern.create.SingleDemo;
+
 /**
  * @program: JavaTest
  * @description:
