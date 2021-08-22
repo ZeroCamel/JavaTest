@@ -11,14 +11,14 @@ public class StaticProxy {
 }
 
 /**
- * 真实接口
+ * 真实接口-服务
  */
 interface  Marry{
     public void marry();
 }
 
 /**
- * 真实角色
+ * 真实角色-组件
  */
 class you implements Marry{
     @Override
@@ -28,7 +28,7 @@ class you implements Marry{
 }
 
 /**
- * 代理角色
+ * 代理角色 继承服务
  */
 class my implements Marry{
 

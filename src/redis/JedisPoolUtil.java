@@ -26,13 +26,13 @@ public class JedisPoolUtil {
             {
                 if (null == jedisPool)
                 {
-                    JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-                    jedisPoolConfig.setMaxTotal(1000);
-                    jedisPoolConfig.setMaxIdle(32);
-                    jedisPoolConfig.setMaxWaitMillis(10*1000);
-                    jedisPoolConfig.setTestOnBorrow(true);
-
-                    jedisPool = new JedisPool(jedisPoolConfig, "192.168.124.21", 6379);
+//                    JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
+//                    jedisPoolConfig.setMaxTotal(1000);
+//                    jedisPoolConfig.setMaxIdle(32);
+//                    jedisPoolConfig.setMaxWaitMillis(10*1000);
+//                    jedisPoolConfig.setTestOnBorrow(true);
+//
+//                    jedisPool = new JedisPool(jedisPoolConfig, "192.168.124.21", 6379);
 
                 }
             }

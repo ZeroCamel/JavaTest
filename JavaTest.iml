@@ -5,30 +5,26 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://D:/Learning/JAVA/lib/commons-io-2.7-bin/commons-io-2.7/commons-io-2.7.jar!/" />
+          <root url="file://$MODULE_DIR$/src/lib" />
         </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES />
         <JAVADOC />
         <SOURCES>
-          <root url="jar://D:/Learning/JAVA/lib/commons-io-2.7-bin/commons-io-2.7/commons-io-2.7-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/src/lib/commons-io-2.4.jar!/" />
+          <root url="jar://$USER_HOME$/.ideaLibSources/commons-io-2.4-sources.jar!/" />
         </SOURCES>
+        <jarDirectory url="file://$MODULE_DIR$/src/lib" recursive="false" />
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://E:/My/lib/commons-io-2.7-bin/commons-io-2.7/commons-io-2.7.jar!/" />
+          <root url="jar://$MODULE_DIR$/../lib/javassist-3.20.0-GA.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/javassist-3.20.0-GA.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -37,34 +33,8 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://E:/BaiduNetdiskDownload/jboss-javassist-javassist-rel_3_27_0_ga-5-gb70a41b/jboss-javassist-javassist-b70a41b/javassist.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://D:/Learning/JAVA/lib/javassist-master/javassist.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://D:/Learning/JAVA/lib/jedis-3.3.0.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://D:/Learning/JAVA/lib/commons-pool2-2.8.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../lib/jedis-3.3.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/jedis-3.3.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

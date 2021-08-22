@@ -2,7 +2,8 @@ package designpattern;
 
 /**
  * @program: JavaTest
- * @description:
+ * @description: 单例模式-一共有8种
+ *
  * @author: zeroCamel
  * @create: 2020-10-13 09:50
  **/
