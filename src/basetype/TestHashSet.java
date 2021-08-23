@@ -1,5 +1,7 @@
 package basetype;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,5 +19,14 @@ public class TestHashSet {
         hashSet.add("cc");
         hashSet.add("aa");
         System.out.println(hashSet);
+
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String transformDate=simpleDateFormat.format(new Date());
+        System.out.println(transformDate);
+
+        while (true)
+        {
+            break;
+        }
     }
 }

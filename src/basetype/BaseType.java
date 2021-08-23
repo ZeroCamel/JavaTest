@@ -1,5 +1,6 @@
 package basetype;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -166,9 +167,22 @@ public class BaseType {
         System.out.println(t.hashCode() + "-" + stringBuilder1.hashCode());
     }
 
-    public static void main(String[] args) {
-        List<String> a = null;
-        staticFun(a);
-        System.out.println(a.size());
+    public static void bigDecimal()
+    {
+        BigDecimal bigDecimal = new BigDecimal(0);
+        BigDecimal bigDecimal1 = new BigDecimal(0.00);
+        BigDecimal add = bigDecimal.add(bigDecimal1);
+        System.out.println(add);
+        System.out.println(bigDecimal.equals(bigDecimal1));
     }
+
+    public static void main(String[] args) {
+//        List<String> a = null;
+//        staticFun(a);
+//        System.out.println(a.size());
+
+        bigDecimal();
+    }
+
+
 }

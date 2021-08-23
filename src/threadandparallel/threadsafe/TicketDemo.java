@@ -18,6 +18,8 @@ public class TicketDemo {
         new Thread(buyTicket,"客户A").start();
         new Thread(buyTicket,"客户B").start();
         new Thread(buyTicket,"客户C").start();
+
+
     }
 }
 class BuyTicket  implements Runnable{
