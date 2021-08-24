@@ -1,5 +1,8 @@
 package designpattern;
 
+import designpattern.behavior.NewsPaperSubject;
+import designpattern.behavior.ObserverA;
+import designpattern.behavior.ObserverB;
 import designpattern.create.SingleDemo;
 
 /**
@@ -10,6 +13,24 @@ import designpattern.create.SingleDemo;
  **/
 public class invokeEntrance {
     public static void main(String[] args) {
-        SingleDemo.getInstance();
+        // SingleDemo.getInstance();
+        NewsPaperSubject newsPaperSubject = new NewsPaperSubject();
+        newsPaperSubject.SendIssue();
+
+        System.out.println("订阅报纸");
+        ObserverA observerA = new ObserverA();
+        ObserverB observerB = new ObserverB();
+        System.out.println("A订阅一份报纸");
+        newsPaperSubject.Attach(observerA);
+        System.out.println("B订阅一份报纸");
+        newsPaperSubject.Attach(observerB);
+
+        System.out.println("发布消息");
+        newsPaperSubject.SendIssue();
+
+        System.out.println("取消订阅者B");
+        newsPaperSubject.Detach(observerB);
+
+        newsPaperSubject.SendIssue();
     }
 }

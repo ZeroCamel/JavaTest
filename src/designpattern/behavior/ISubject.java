@@ -16,16 +16,16 @@ public interface ISubject {
      * 订阅
      * @param observe
      */
-    void attach(IObserve observe);
+    void Attach(IObserve observe);
 
     /**
      * 移除
      * @param observe
      */
-    void detach(IObserve observe);
+    void Detach(IObserve observe);
 
     /**
      * 通知
      */
-    void notifyMessage();
+    void Notify();
 }
