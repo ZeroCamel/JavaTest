@@ -1,4 +1,4 @@
-package jvm;
+package jvm.oomdemo;
 
 /**
  * @program: JavaTest

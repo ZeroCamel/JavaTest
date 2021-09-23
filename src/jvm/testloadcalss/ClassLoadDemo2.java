@@ -1,4 +1,4 @@
-package jvm;
+package jvm.testloadcalss;
 
 /**
  * @program: JavaTest
@@ -22,7 +22,7 @@ public class ClassLoadDemo2 {
         String path = "src/JVM/testClass";
         FileSystemClassLoader fileSystemClassLoader = new FileSystemClassLoader(path);
 
-        Class<?> aClass = fileSystemClassLoader.loadClass("jvm.testClass.TestClassLoader");
+        Class<?> aClass = fileSystemClassLoader.loadClass("jvm.testloadcalss.TestClassLoader");
         Class<?> aClass1 = fileSystemClassLoader.loadClass("java.lang.String");
 
         System.out.println(aClass);

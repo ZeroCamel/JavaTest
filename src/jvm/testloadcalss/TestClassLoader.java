@@ -1,4 +1,4 @@
-package jvm.testClass;
+package jvm.testloadcalss;
 
 /**
  * @program: JavaTest
