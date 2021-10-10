@@ -12,7 +12,7 @@ public class SingleDemo {
      * volatile 关键词防止指令重排 保证线程的可见性 将缓存中的变化即时刷新到主存
      * 使得其他内存失效 必须从主存获取 避免重复创建实例
      */
-    private static volatile SingleDemo singleDemo = null;
+    private volatile static SingleDemo singleDemo = null;
 
     /**
      * 构造器私有 不然直接NEW可以创建

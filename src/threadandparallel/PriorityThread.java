@@ -2,7 +2,7 @@ package threadandparallel;
 
 /**
  * @program: JavaTest
- * @description: ${线程优先级}
+ * @description: ${线程优先级不能作为程序正确性的依赖}
  * @author: Mr.ZeroCamel
  * @create: 2020-08-19 22:36
  **/
