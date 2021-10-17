@@ -1,4 +1,4 @@
-package designpattern.create;
+package designpattern.create.singlepattern;
 
 /**
  * @program: JavaTest

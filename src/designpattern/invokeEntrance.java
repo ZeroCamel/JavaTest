@@ -3,7 +3,6 @@ package designpattern;
 import designpattern.behavior.NewsPaperSubject;
 import designpattern.behavior.ObserverA;
 import designpattern.behavior.ObserverB;
-import designpattern.create.SingleDemo;
 
 /**
  * @program: JavaTest
