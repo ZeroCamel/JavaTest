@@ -1,4 +1,4 @@
-package jvm.testloadcalss;
+package jvm.testloadclass;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,9 +33,9 @@ public class TestClassLoader {
             }
         };
 
-        Object newInstance = myloader.loadClass("jvm.testloadcalss.TestClassLoader").newInstance();
+        Object newInstance = myloader.loadClass("jvm.testloadclass.TestClassLoader").newInstance();
         System.out.println(newInstance.getClass());
-        System.out.println(newInstance instanceof jvm.testloadcalss.TestClassLoader);
+        System.out.println(newInstance instanceof jvm.testloadclass.TestClassLoader);
 
     }
 }

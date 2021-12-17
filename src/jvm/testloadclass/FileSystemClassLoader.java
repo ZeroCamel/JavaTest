@@ -1,4 +1,4 @@
-package jvm.testloadcalss;
+package jvm.testloadclass;
 
 import java.io.*;
 

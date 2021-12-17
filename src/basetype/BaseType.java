@@ -1,8 +1,14 @@
 package basetype;
 
+import cn.hutool.core.convert.Convert;
+import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.date.DateUtil;
+
+import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @program: JavaTest
@@ -167,8 +173,7 @@ public class BaseType {
         System.out.println(t.hashCode() + "-" + stringBuilder1.hashCode());
     }
 
-    public static void bigDecimal()
-    {
+    public static void bigDecimal() {
         BigDecimal bigDecimal = new BigDecimal(0);
         BigDecimal bigDecimal1 = new BigDecimal(0.00);
         BigDecimal add = bigDecimal.add(bigDecimal1);
@@ -176,12 +181,61 @@ public class BaseType {
         System.out.println(bigDecimal.equals(bigDecimal1));
     }
 
-    public static void main(String[] args) {
-//        List<String> a = null;
-//        staticFun(a);
-//        System.out.println(a.size());
+    public static void hashMapTest() {
+        HashMap<String, String> stringHashMap = new HashMap<>();
+        stringHashMap.put("0", "Integer");
+        stringHashMap.put("1", "Long");
+        stringHashMap.put("0", "String");
 
-        bigDecimal();
+        for (Map.Entry<String, String> entry :
+                stringHashMap.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            System.out.println(key + "-" + value);
+        }
+    }
+
+    public static void hashSetTest() {
+        HashSet<String> stringHashMap = new HashSet<>();
+        stringHashMap.add("0");
+        stringHashMap.add("1");
+        stringHashMap.add("0");
+
+        for (Iterator<String> it = stringHashMap.iterator(); it.hasNext(); ) {
+            String next = it.next();
+            System.out.println(next);
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+
+        String time = "2021-09-01 15:01:01";
+        String format = DateUtil.format(Convert.toDate(time), "yyyy-MM");
+
+        Date localDateTime = Convert.toDate(time);
+        LocalDateTime localDateTime1 = Convert.toLocalDateTime(time);
+
+        System.out.println(localDateTime1.toString());
+    }
+
+    private static void extracted() {
+        String date = "2021-06-01 00:00:00";
+        String date1 = "2021-12-01 00:00:00";
+
+        int compareTo = date.compareTo(date1);
+
+        String strFormat = "yyyy-MM";
+        Date startDate = Convert.toDate(date);
+        Date endDate = Convert.toDate(date1);
+        int i1 = endDate.compareTo(startDate);
+        // 遍历AddMonth
+        long betweenMonth = DateUtil.betweenMonth(startDate, endDate, true);
+        ArrayList<String> yearOfMonth = new ArrayList<>();
+        for (int i = 0; i <= betweenMonth; i++) {
+            String fStartDate = DateUtil.format(startDate, strFormat);
+            yearOfMonth.add(fStartDate);
+            startDate = DateUtil.offsetMonth(startDate, 1);
+        }
     }
 
 
