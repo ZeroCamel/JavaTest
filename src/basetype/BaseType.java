@@ -1,8 +1,14 @@
 package basetype;
 
+import lombok.Data;
+
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @program: JavaTest
@@ -181,8 +187,37 @@ public class BaseType {
 //        staticFun(a);
 //        System.out.println(a.size());
 
-        bigDecimal();
+        LocalDateTime time = LocalDateTime.parse("2020-09-08 00:02:12");
+        LocalDateTime time1 = LocalDateTime.parse("2020-09-18 15:09:00");
+
+        ArrayList<User> users = new ArrayList<>();
+        User user = new User();
+        user.setName("a");
+        user.setTime(time);
+        User user1 =new User();
+        user1.setName("b");
+        user1.setTime(time1);
+
+        users.add(user);
+        users.add(user1);
+
+        Map<String, Long> stringLongMap = users.stream().collect(Collectors.groupingBy(User::formatTime, Collectors.counting()));
+        System.out.println();
+
     }
 
 
+}
+@Data
+class User {
+
+    public LocalDateTime time;
+    public String name;
+
+    public String formatTime()
+    {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String format = simpleDateFormat.format(time);
+        return format;
+    }
 }

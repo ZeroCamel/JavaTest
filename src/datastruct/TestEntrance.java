@@ -3,8 +3,6 @@ package datastruct;
 import datastruct.map.CusHashMap;
 import datastruct.map.CusHashMapGeneric;
 
-import java.util.ArrayList;
-
 /**
  * @program: JavaTest
  * @description: 测试数据结构入口
@@ -41,6 +39,10 @@ public class TestEntrance {
 
         System.out.println(map);
         System.out.println(map.get(69));
+
+        String i = "123";
+        int hashCode = i.hashCode();
+        System.out.println(hashCode);
 
     }
 }

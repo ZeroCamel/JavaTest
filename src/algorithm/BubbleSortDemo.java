@@ -29,5 +29,6 @@ public class BubbleSortDemo {
         for (int i = 0; i < bubbleSort.length; i++) {
             System.out.println(bubbleSort[i]);
         }
+
     }
 }
