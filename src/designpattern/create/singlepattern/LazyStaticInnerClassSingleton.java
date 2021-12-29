@@ -1,5 +1,7 @@
 package designpattern.create.singlepattern;
 
+import java.io.Serializable;
+
 /**
  * @program: JavaTest
  * @description: ${静态内部类
@@ -10,15 +12,21 @@ package designpattern.create.singlepattern;
  * @author: Mr.ZeroCamel
  * @create: 2021-12-26 22:19
  **/
-public class LazyStaticInnerClassSingleton {
+public class LazyStaticInnerClassSingleton implements Serializable {
 
     private LazyStaticInnerClassSingleton(){}
-    private static LazyStaticInnerClassSingleton getInstance()
+    public static LazyStaticInnerClassSingleton getInstance()
     {
         return LazyHolder.INSTANCE;
     }
 
     private static class LazyHolder{
         private static final LazyStaticInnerClassSingleton INSTANCE = new LazyStaticInnerClassSingleton();
+    }
+
+    // 点睛之笔
+    private Object readResolve()
+    {
+        return LazyHolder.INSTANCE;
     }
 }

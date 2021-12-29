@@ -13,6 +13,12 @@ public class ThreadInvokeTest {
         Thread thread1 = new Thread(exectorThread);
         thread.start();
         thread1.start();
+
+//        单例
+//        System.out.println(ThreadLocalSingleton.getInstance());
+//        System.out.println(ThreadLocalSingleton.getInstance());
+//        System.out.println(ThreadLocalSingleton.getInstance());
+
         System.out.println("End");
     }
 }

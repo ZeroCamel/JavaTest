@@ -1,7 +1,7 @@
 package designpattern;
 
 
-import designpattern.create.singlepattern.LazySimpleLockSingleton;
+import designpattern.create.singlepattern.ThreadLocalSingleton;
 
 /**
  * @program: JavaTest
@@ -14,7 +14,8 @@ public class ExectorThread implements Runnable {
     public void run() {
 //      HungrySingleton.Singleton1 instance = HungrySingleton.Singleton1.getInstance();
 //      LazySimpleSingleton instance = LazySimpleSingleton.getInstance();
-        LazySimpleLockSingleton instance = LazySimpleLockSingleton.getInstance();
+//      LazySimpleLockSingleton instance = LazySimpleLockSingleton.getInstance();
+        ThreadLocalSingleton instance = ThreadLocalSingleton.getInstance();
         System.out.println(Thread.currentThread().getName() + ":" + instance);
     }
 }

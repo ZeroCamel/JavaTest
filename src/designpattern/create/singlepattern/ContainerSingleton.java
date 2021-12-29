@@ -5,7 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @program: JavaTest
- * @description: ${容器式单例}
+ * @description: ${容器式单例 适合大量创建单例的场景}
  * @author: Mr.ZeroCamel
  * @create: 2021-12-26 23:43
  **/
