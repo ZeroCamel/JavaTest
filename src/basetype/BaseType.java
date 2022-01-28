@@ -1,24 +1,34 @@
 package basetype;
 
-<<<<<<< HEAD
+import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.ArrayUtil;
+import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONUtil;
+import com.alibaba.fastjson.JSON;
+import org.junit.platform.commons.util.StringUtils;
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.*;
-=======
 import lombok.Data;
-
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
->>>>>>> 799d57be8cb1166657ad2dce360bba0a57b1015e
 import java.util.stream.Collectors;
 
 /**
@@ -220,18 +230,175 @@ public class BaseType {
 
     public static void main(String[] args) throws IOException {
 
-        String time = "2021-09-01 15:01:01";
-        String format = DateUtil.format(Convert.toDate(time), "yyyy-MM");
 
-        Date localDateTime = Convert.toDate(time);
-        LocalDateTime localDateTime1 = Convert.toLocalDateTime(time);
+//        Date date = new Date(0);
+//        System.out.println(DateUtil.format(date,DatePattern.NORM_DATETIME_PATTERN));
+//
+//        double a = 1.222;
+//        long longValue = new Double(a).longValue();
+//        long c = 100;
+//        Long d = 100L;
+//        double v = d.doubleValue();
 
-        System.out.println(localDateTime1.toString());
+//        Integer aa = 1;
+//        Long aLong = Long.valueOf(aa.toString());
+//        System.out.println(aLong);
+//
+//        DecimalFormat format = new DecimalFormat();
+//        format.setMaximumFractionDigits(0);
+//        String format1 = format.format(0.3);
+//        String format2 = format.format(0.7);
+//        System.out.println(format1+":"+format2);
+//
+//        System.out.println(a + "-" + longValue + "-" + format1);
+//        System.out.println(format.format((v+a)/2));
+
+//        DecimalFormat percent = (DecimalFormat) NumberFormat.getPercentInstance();
+//        // 保留2位有效数字
+//        percent.setMaximumFractionDigits(2);
+//        percent.setPositiveSuffix("%");
+//        String ac = "0.04974";
+//        System.out.println(Convert.toDouble(ac));
+//        System.out.println(percent.format(Convert.toDouble(ac)));
+
+//
+//        try {
+//            String date = dateToStamp(DateUtil.format(new Date(), DatePattern.NORM_DATETIME_PATTERN));
+//            String date1 = dateToStamp(DateUtil.format(Convert.toDate("2022-01-04"), DatePattern.NORM_DATETIME_PATTERN));
+//            System.out.println(date);
+//            System.out.println(date1);
+//
+//            String bl = "1|0";
+//
+//            ScriptEngine engine = new ScriptEngineManager().getEngineByName("javascript");
+//            try {
+//                Object eval = engine.eval(bl);
+//                BigDecimal bigDecimal = new BigDecimal(0);
+//                //不能省略，防止使用科学计数
+//                if (eval instanceof Integer){
+//                    bigDecimal = bigDecimal.add(new BigDecimal((Integer)eval));
+//                }
+//                //不能省略，防止使用科学计数
+//                if (eval instanceof Double){
+//                    bigDecimal = bigDecimal.add(new BigDecimal((Double)eval));
+//                }
+//                System.out.println(timestampToTime(bigDecimal,UnitEnum.DAY.getKey()));
+//            } catch (ScriptException e) {
+//                e.printStackTrace();
+//            }
+//
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//
+
+
+//        LocalDateTime localDateTime = Convert.toLocalDateTime(null);
+//        String format2 = DateUtil.format(localDateTime, DatePattern.NORM_DATETIME_PATTERN);
+//        String s = DateUtil.parse(format2) + "";
+//
+//        String content = "leaveTime-6444";
+//        String[] strings = content.split(caclRegx);
+//
+//        String format = DateUtil.format(new Date(), DatePattern.NORM_DATETIME_PATTERN);
+//
+//        DecimalFormat percent = (DecimalFormat) NumberFormat.getPercentInstance();
+//        percent.setMaximumFractionDigits(0);
+//        BigDecimal bigDecimal = new BigDecimal("0.99");
+//        String format1 = percent.format(bigDecimal);
+//        // -1 0 1
+//        if (bigDecimal.compareTo(new BigDecimal("1")) == 1) {
+//            System.out.println("显示");
+//        }
+//
+//        BigDecimal bigDecimal1 = bigDecimal.setScale(0,BigDecimal.ROUND_DOWN);
+//
+//        System.out.println(bigDecimal1.toString());
+
+//        List<String> currItemList = new ArrayList<>();
+//        List<String> dbItemList = new ArrayList<>();
+//        String itemValue = "[\"a\",\"b\",\"c\"]";
+//        if (!StringUtils.isBlank(itemValue)) {
+//            dbItemList = JSONUtil.toList(JSONUtil.parseArray(itemValue), String.class);
+//        }
+//
+//        List<String> newList = (List<String>) CollectionUtil.union(dbItemList, currItemList);
+//        String s = JSONUtil.toJsonStr(dbItemList);
+//        System.out.println(s);
+//
+//        boolean jsonArray = JSONUtil.isJsonArray(itemValue);
+//        List<String> strings = JSONUtil.toList(itemValue, String.class);
+//
+//        List<String> strings2 = JSONUtil.toList(s, String.class);
+//
+//        String toJsonStr = JSONUtil.toJsonStr(s);
+//
+//        List<String> strings1 = JSON.parseArray(s, String.class);
+//
+//        Double A = 22.22D;
+//        System.out.println(A.toString());
+//
+//        List<String> union = (List<String>) CollectionUtil.union(new ArrayList<>(), dbItemList);
+//        System.out.println(union);
+
+        HashMap<String, Object> hashMap = new HashMap<>(1);
+        hashMap.put("dd","22");
+        System.out.println(hashMap);
+    }
+
+    public static final String caclRegx = "\\(|\\)|\\+|\\-";
+
+    private static String timestampToTime(BigDecimal timestamp, String unit) {
+
+        if (unit.equals(UnitEnum.WEEK.getKey())) {
+            timestamp = timestamp.divide(new BigDecimal(DateUnit.WEEK.getMillis()), 2, BigDecimal.ROUND_HALF_UP);
+        }
+        if (unit.equals(UnitEnum.DAY.getKey())) {
+            timestamp = timestamp.divide(new BigDecimal(DateUnit.DAY.getMillis()), 2, BigDecimal.ROUND_HALF_UP);
+        }
+        if (unit.equals(UnitEnum.HOUR.getKey())) {
+            timestamp = timestamp.divide(new BigDecimal(DateUnit.HOUR.getMillis()), 2, BigDecimal.ROUND_HALF_UP);
+        }
+        if (unit.equals(UnitEnum.MINUTE.getKey())) {
+            timestamp = timestamp.divide(new BigDecimal(DateUnit.MINUTE.getMillis()), 2, BigDecimal.ROUND_HALF_UP);
+        }
+        if (unit.equals(UnitEnum.SECOND.getKey())) {
+            timestamp = timestamp.divide(new BigDecimal(DateUnit.SECOND.getMillis()), 2, BigDecimal.ROUND_HALF_UP);
+        }
+
+
+        return timestamp.toString();
+
+    }
+
+    /*
+     * 将时间戳转换为时间
+     */
+    public static String stampToDate(String s) {
+        String res;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        long lt = new Long(s);
+        Date date = new Date(lt);
+        res = simpleDateFormat.format(date);
+        return res;
+    }
+
+    /*
+     * 将时间转换为时间戳
+     */
+    public static String dateToStamp(String s) throws ParseException {
+        String res;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = simpleDateFormat.parse(s);
+        long ts = date.getTime();
+        res = String.valueOf(ts);
+        return res;
     }
     
     private static void extracted() {
         String date = "2021-06-01 00:00:00";
         String date1 = "2021-12-01 00:00:00";
+
 
         int compareTo = date.compareTo(date1);
 
@@ -268,16 +435,43 @@ public class BaseType {
 
 
 }
+
 @Data
 class User {
 
     public LocalDateTime time;
     public String name;
 
-    public String formatTime()
-    {
+    public String formatTime() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String format = simpleDateFormat.format(time);
         return format;
+    }
+}
+
+enum UnitEnum {
+    YEAR("year", "年"),
+    MONTH("month", "月"),
+    WEEK("week", "周"),
+    DAY("day", "日"),
+    HOUR("hour", "时"),
+    MINUTE("minute", "分"),
+    SECOND("second", "秒"),
+    ;
+
+    private String key;
+    private String value;
+
+    UnitEnum(String key, String value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public String getValue() {
+        return value;
     }
 }
