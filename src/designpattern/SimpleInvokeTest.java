@@ -10,7 +10,7 @@ import designpattern.behavior.ObserverB;
  * @author: zeroCamel
  * @create: 2020-10-14 13:47
  **/
-public class invokeEntrance {
+public class SimpleInvokeTest {
     public static void main(String[] args) {
         // SingleDemo.getInstance();
         NewsPaperSubject newsPaperSubject = new NewsPaperSubject();

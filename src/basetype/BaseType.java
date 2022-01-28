@@ -1,5 +1,6 @@
 package basetype;
 
+<<<<<<< HEAD
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateUtil;
@@ -8,6 +9,16 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
+=======
+import lombok.Data;
+
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+>>>>>>> 799d57be8cb1166657ad2dce360bba0a57b1015e
 import java.util.stream.Collectors;
 
 /**
@@ -217,7 +228,7 @@ public class BaseType {
 
         System.out.println(localDateTime1.toString());
     }
-
+    
     private static void extracted() {
         String date = "2021-06-01 00:00:00";
         String date1 = "2021-12-01 00:00:00";
@@ -236,7 +247,37 @@ public class BaseType {
             yearOfMonth.add(fStartDate);
             startDate = DateUtil.offsetMonth(startDate, 1);
         }
+
+        LocalDateTime time = LocalDateTime.parse("2020-09-08 00:02:12");
+        LocalDateTime time1 = LocalDateTime.parse("2020-09-18 15:09:00");
+
+        ArrayList<User> users = new ArrayList<>();
+        User user = new User();
+        user.setName("a");
+        user.setTime(time);
+        User user1 =new User();
+        user1.setName("b");
+        user1.setTime(time1);
+
+        users.add(user);
+        users.add(user1);
+
+        Map<String, Long> stringLongMap = users.stream().collect(Collectors.groupingBy(User::formatTime, Collectors.counting()));
+        System.out.println();
     }
 
 
+}
+@Data
+class User {
+
+    public LocalDateTime time;
+    public String name;
+
+    public String formatTime()
+    {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String format = simpleDateFormat.format(time);
+        return format;
+    }
 }
